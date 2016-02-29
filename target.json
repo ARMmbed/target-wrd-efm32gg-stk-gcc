@@ -1,0 +1,162 @@
+{
+  "name": "wrd-efm32gg-stk-gcc",
+  "version": "0.0.0",
+  "description": "Silicon Labs EFM32GG STK target with Watch Reference Design configurations.",
+  "licenses": [
+    {
+      "url": "https://spdx.org/licenses/Apache-2.0",
+      "type": "Apache-2.0"
+    }
+  ],
+  "inherits": {
+    "efm32gg-stk-gcc": "*"
+  },
+  "keywords": [
+    "mbed-target:wrd-efm32gg-stk",
+    "efm32gg",
+    "watch",
+    "gcc"
+  ],
+  "similarTo": [
+    "wrd-ui",
+    "framebuffer-1bit",
+    "matrixlcd-printf-1bit",
+    "wrd-rgb-led",
+    "rgb-led-gpio",
+    "wrd-message-center",
+    "message-center-spi-master"
+  ],
+  "config": {
+    "mbed-os": {
+      "stdio": {
+        "default-baud": 115200
+      }
+    },
+    "hardware": {
+      "wearable-reference-design": {
+        "battery": {
+          "present": false
+        },
+        "battery-backup": {
+          "present": false
+        },
+        "battery-gauge": {
+          "present": false
+        },
+        "bit-band": {
+          "present": true,
+          "ram-base": "0x20000000UL",
+          "bit-band-base": "0x22000000UL"
+        },
+        "bluetooth-le": {
+          "present": false
+        },
+        "button": {
+          "present": true,
+          "forward": {
+            "gpio": {
+              "pin": "PB9"
+            }
+          },
+          "backward": {
+            "gpio": {
+              "pin": "PB10"
+            }
+          }
+        },
+        "buzzer": {
+          "present": false
+        },
+        "external-gpio": {
+          "present": false
+        },
+        "external-sram": {
+          "present": false
+        },
+        "gps": {
+          "present": false
+        },
+        "interface": {
+          "i2c": {
+            "size": 0
+          },
+          "spi": {
+            "size": 0
+          }
+        },
+        "message-center": {
+          "present": true,
+          "transport": {
+            "size": 0
+          }
+        },
+        "micro-sd": {
+          "present": false
+        },
+        "nfc": {
+          "present": false
+        },
+        "output-compare": {
+          "present": true
+        },
+        "rfid": {
+          "present": false
+        },
+        "rgb-led": {
+          "present": false
+        },
+        "screen": {
+          "present": false
+        },
+        "sensor-accelerometer": {
+          "present": false
+        },
+        "sensor-gyroscope": {
+          "present": false
+        },
+        "sensor-magnetometer": {
+          "present": false
+        },
+        "sensor-battery-current": {
+          "present": false
+        },
+        "sensor-battery-charging-current": {
+          "present": false
+        },
+        "sensor-battery-voltage": {
+          "present": false
+        },
+        "sensor-fingerprint": {
+          "present": false
+        },
+        "sensor-temperature": {
+          "present": false
+        },
+        "swo": {
+          "present": true,
+          "enabled": false
+        },
+        "touch": {
+          "present": true,
+          "slider-1": 11,
+          "slider-2": 10,
+          "slider-3": 9,
+          "slider-4": 8,
+          "channels-in-use": 4,
+          "sensitivity": 90,
+          "sample-delay": 30,
+          "calibration-values": 10,
+          "scan-frequency-low": 20,
+          "scan-frequency-high": 20
+        },
+        "vibration-motor": {
+          "present": false
+        },
+        "watchdog": {
+          "present": true,
+          "enabled": true
+        }
+      }
+    }
+  }
+}

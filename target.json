@@ -33,7 +33,7 @@
       }
     },
     "hardware": {
-      "wearable-reference-design": {
+      "wrd": {
         "battery": {
           "present": false
         },
@@ -82,6 +82,18 @@
           },
           "spi": {
             "size": 0
+          }
+        },
+        "led": {
+          "present": true,
+          "size": 2,
+          "led0": {
+            "pin": "LED0",
+            "location": 0
+          },
+          "led0": {
+            "pin": "LED1",
+            "location": 0
           }
         },
         "message-center": {

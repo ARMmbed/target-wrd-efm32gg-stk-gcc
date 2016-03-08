@@ -1,6 +1,6 @@
 {
   "name": "wrd-efm32gg-stk-gcc",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Silicon Labs EFM32GG STK target with Watch Reference Design configurations.",
   "licenses": [
     {

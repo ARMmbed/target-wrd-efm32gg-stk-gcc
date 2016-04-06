@@ -9,22 +9,30 @@
     }
   ],
   "inherits": {
-    "efm32gg-stk-gcc": "*"
+    "efm32gg-gcc": "^1.0.0"
   },
   "keywords": [
-    "mbed-target:wrd-efm32gg-stk",
+    "mbed-target:watch-efm32gg-stk",
     "efm32gg",
     "watch",
     "gcc"
   ],
   "similarTo": [
+    "message-center-transport-spi-master",
     "wrd-ui",
     "framebuffer-1bit",
     "matrixlcd-printf-1bit",
-    "wrd-rgb-led",
-    "rgb-led-gpio",
-    "wrd-message-center",
-    "message-center-spi-master"
+    "wrd-touch",
+    "watch",
+    "efm32gg-stk",
+    "efm32gg",
+    "efm32",
+    "silabs",
+    "cortex-m3",
+    "armv7-m",
+    "arm",
+    "gcc",
+    "swo"
   ],
   "config": {
     "mbed-os": {
@@ -32,7 +40,63 @@
         "default-baud": 115200
       }
     },
+    "minar": {
+      "stats": true
+    },
     "hardware": {
+      "device": "EFM32GG990F1024",
+      "flash-size": 1024,
+      "ram-size": 128,
+      "clock": {
+        "core": {
+          "source": "HFXO",
+          "frequency": 48000000
+        },
+        "low-energy": {
+          "source": "LFXO",
+          "frequency": 32768
+        }
+      },
+      "pins": {
+        "LED0": "PE2",
+        "LED1": "PE3",
+        "LED2": "LED0",
+        "LED3": "LED0",
+        "LED4": "LED1",
+        "SW0": "PB9",
+        "SW1": "PB10",
+        "BTN0": "SW0",
+        "BTN1": "SW1",
+        "UART_TX": "PD0",
+        "UART_RX": "PD1",
+        "SERIAL_TX": "PD0",
+        "SERIAL_RX": "PD1",
+        "STDIO_UART_TX": "PE0",
+        "STDIO_UART_RX": "PE1",
+        "USBTX": "PE0",
+        "USBRX": "PE1",
+        "EFM_BC_EN": "PF7",
+        "SLIDER_PAD_0": "PC8",
+        "SLIDER_PAD_1": "PC9",
+        "SLIDER_PAD_2": "PC10",
+        "SLIDER_PAD_3": "PC11"
+      },
+      "test-pins": {
+        "spi": {
+          "MOSI": "PD0",
+          "MISO": "PD1",
+          "SCLK": "PD2",
+          "SSEL": "PD3"
+        },
+        "i2c": {
+          "SDA": "PC4",
+          "SCL": "PC5"
+        }
+      },
+      "capsense": {
+        "channels-in-use": 4,
+        "sensitivity": 90
+      },
       "wrd": {
         "battery": {
           "present": false
@@ -53,24 +117,23 @@
         },
         "button": {
           "present": true,
-          "forward": {
-            "gpio": {
-              "pin": "PB9"
-            }
+          "size": 2,
+          "button0": {
+            "pin": "PB9",
+            "location": 0
           },
-          "backward": {
-            "gpio": {
-              "pin": "PB10"
-            }
+          "button1": {
+            "pin": "PB10",
+            "location": 0
           }
         },
         "buzzer": {
           "present": false
         },
-        "external-gpio": {
+        "external-sram": {
           "present": false
         },
-        "external-sram": {
+        "gpio-expander": {
           "present": false
         },
         "gps": {
@@ -81,25 +144,37 @@
             "size": 0
           },
           "spi": {
-            "size": 0
+            "size": 3,
+            "spi0": {
+              "name": "spi0",
+              "mosi": "PC11",
+              "miso": "PC10",
+              "sclk": "PC9"
+            },
+            "spi1": {
+              "name": "spi1",
+              "mosi": "PD0",
+              "miso": "NC",
+              "sclk": "PD2"
+            },
+            "spi2": {
+              "name": "spi2",
+              "mosi": "PB3",
+              "miso": "PB4",
+              "sclk": "PB5"
+            }
           }
         },
         "led": {
           "present": true,
           "size": 2,
           "led0": {
-            "pin": "LED0",
+            "pin": "PE2",
             "location": 0
           },
-          "led0": {
-            "pin": "LED1",
+          "led1": {
+            "pin": "PE3",
             "location": 0
-          }
-        },
-        "message-center": {
-          "present": true,
-          "transport": {
-            "size": 0
           }
         },
         "micro-sd": {
@@ -124,9 +199,6 @@
           "present": false
         },
         "sensor-gyroscope": {
-          "present": false
-        },
-        "sensor-magnetometer": {
           "present": false
         },
         "sensor-battery-current": {
@@ -169,6 +241,27 @@
           "enabled": true
         }
       }
+    },
+    "modules": {
+      "serial": {
+        "stdio-uart": "UART0"
+      }
     }
+  },
+  "scripts": {
+    "debug": [
+      "valinor",
+      "-t",
+      "uvision",
+      "--target",
+      "efm32gg-stk",
+      "$program"
+    ],
+    "test": [
+      "mbed_test_wrapper",
+      "--target",
+      "EFM32GG_STK3700",
+      "$program"
+    ]
   }
 }
